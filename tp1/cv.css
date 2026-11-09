@@ -1,0 +1,110 @@
+
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
+    color: #333;
+    margin: 40px;
+}
+
+/* En-tête du CV */
+header {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+/* Titres des catégories */
+h1 {
+    color: #1e3a5f;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #2563eb;
+}
+
+/* Tableaux */
+table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+/* Cellules */
+th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+/* En-têtes des tableaux */
+th {
+    background-color: #1e3a5f;
+    color: white;
+}
+
+/* Lignes impaires */
+tr:nth-child(odd) td {
+    background-color: #f1f5f9;
+}
+
+/* Survol des lignes */
+tr:hover td {
+    background-color: #bfdbfe;
+}
+
+/* Liens hypertextes */
+a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+/* Survol des liens */
+a:hover {
+    color: orange;
+    text-decoration: underline;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+/* Agrandissement des images */
+img:hover {
+    transform: scale(1.2);
+}
+
+/* Adaptation aux téléphones */
+@media only screen and (max-width: 600px) {
+
+    body {
+        margin: 10px;
+        background: radial-gradient(circle, #dbeafe, #fbcfe8);
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+        table-layout: fixed;
+        overflow-wrap: anywhere;
+    }
+
+    th, td {
+        padding: 7px;
+    }
+}
