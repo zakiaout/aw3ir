@@ -1,0 +1,65 @@
+
+/* Style général de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9eaed;
+    padding: 30px;
+}
+
+/* Style du formulaire */
+form {
+    background-color: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 1px -1px #0003,
+                0 1px 1px #00000024,
+                0 1px 3px #0000001f;
+}
+
+/* Alignement des labels */
+label {
+    width: 150px;
+    display: inline-block;
+}
+
+/* Style des champs de saisie */
+input {
+    width: 250px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Style du bouton de soumission */
+.btn-primary {
+    border-radius: 5px;
+    padding: 6px 12px;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Cas du formulaire non valide */
+form:invalid input[type="submit"] {
+    background-color: gray;
+}
+
+/* Bordure rouge pour un champ non valide */
+input:invalid {
+    border-color: red;
+}
+
+/* Cacher la coche si le champ est invalide */
+input:invalid + .icon-ok {
+    display: none;
+}
+
+/* Afficher la coche si le champ est valide */
+input:valid + .icon-ok {
+    display: inline-block;
+    color: green;
+}
