@@ -1,39 +1,81 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>TP4</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <style>
-        body {
-            background-color: #e9ebee;
-            font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-            font-size: 16px;
-            margin: 0 auto;
-            max-width: 800px;
-        }
-    </style>
-
-    <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="main.js"></script>-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP4 - HTML5, GPS et contacts</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <style>
+    body { background-color: #f6f7fb; }
+    .counter { font-size: .85rem; color: #6c757d; white-space: nowrap; text-align: end; }
+    #map iframe { width: 100%; height: 240px; border: 1px solid #dee2e6; border-radius: .375rem; }
+    #map { color: #6c757d; }
+  </style>
+  <script src="js/bootstrap.bundle.js" defer></script>
+  <script src="js/gps.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/form-validation.js" defer></script>
 </head>
-
 <body>
-    <nav>
-        <a href="..">🏠 Index</a> / TP4
-    </nav>
-    <h1>TP4</h1>
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <img src="../galilee.png" alt="Logo Galilee" />
-</body>
+  <main class="container py-4">
+    <h1 class="mb-4">TP #4 - HTML5</h1>
+    <form id="contact-form" class="bg-white shadow-sm rounded p-4" novalidate>
+      <div class="row mb-3 align-items-center">
+        <label for="name" class="col-sm-2 col-form-label">Nom</label>
+        <div class="col-sm-9"><input id="name" name="name" type="text" class="form-control" required oninput="calcNbChar(this.id)" autofocus></div>
+        <div class="col-sm-1 counter" data-count="name">0 car.</div>
+      </div>
+      <div class="row mb-3 align-items-center">
+        <label for="firstname" class="col-sm-2 col-form-label">Prénom</label>
+        <div class="col-sm-9"><input id="firstname" name="firstname" type="text" class="form-control" required oninput="calcNbChar(this.id)"></div>
+        <div class="col-sm-1 counter" data-count="firstname">0 car.</div>
+      </div>
+      <div class="row mb-3 align-items-center">
+        <label for="birthday" class="col-sm-2 col-form-label">Date de naissance</label>
+        <div class="col-sm-9"><input id="birthday" name="birthday" type="date" class="form-control" required oninput="calcNbChar(this.id)"></div>
+        <div class="col-sm-1 counter" data-count="birthday">0 car.</div>
+      </div>
+      <div class="row mb-3 align-items-center">
+        <label for="address" class="col-sm-2 col-form-label">Adresse postale</label>
+        <div class="col-sm-9">
+          <div class="input-group">
+            <input id="address" name="address" type="text" class="form-control" required oninput="calcNbChar(this.id)">
+            <button id="gps-btn" type="button" class="btn btn-outline-primary">📍 GPS</button>
+          </div>
+          <div id="map" class="mt-2" aria-live="polite"></div>
+        </div>
+        <div class="col-sm-1 counter" data-count="address">0 car.</div>
+      </div>
+      <div class="row mb-3 align-items-center">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-9"><input id="email" name="email" type="email" class="form-control" required oninput="calcNbChar(this.id)"></div>
+        <div class="col-sm-1 counter" data-count="email">0 car.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+      <button type="button" id="reset-btn" class="btn btn-outline-danger ms-2">Reset</button>
+    </form>
 
+    <h2 class="h4 mt-5">Liste des contacts enregistrés</h2>
+    <div class="table-responsive">
+      <table id="contacts-table" class="table table-striped table-bordered bg-white">
+        <thead class="table-dark">
+          <tr><th>Nom</th><th>Prénom</th><th>Date de naissance</th><th>Adresse (Maps)</th><th>Email</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p id="empty-message" class="text-muted">Aucun contact enregistré.</p>
+  </main>
+
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Résultat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button></div>
+    </div></div>
+  </div>
+</body>
 </html>
